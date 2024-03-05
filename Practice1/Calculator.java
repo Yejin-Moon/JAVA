@@ -8,6 +8,7 @@ public class Calculator extends JFrame {
 
     private JTextField inputSpace;
     private String num = "";
+    private String prev_opertaion = "";
     private ArrayList<String> equation = new ArrayList<String>();
 
     public Calculator() {
@@ -61,7 +62,14 @@ public class Calculator extends JFrame {
                 String result = Double.toString(calculate(inputSpace.getText()));
                 inputSpace.setText("" + result);
                 num = "";
+            } else if (operation.equals("+") || operation.equals("-") || operation.equals("*") || operation.equals("/")) {
+                if (inputSpace.getText().equals("") && operation.equals("-")) {
+                    inputSpace.setText(inputSpace.getText() + e.getActionCommand());
+                } else if (!inputSpace.getText().equals("") && !prev_opertaion.equals("+") && !prev_opertaion.equals("-") && !prev_opertaion.equals("*") && !prev_opertaion.equals("/")) {
+                    inputSpace.setText(inputSpace.getText() + e.getActionCommand());
+                }
             } else inputSpace.setText(inputSpace.getText() + e.getActionCommand());
+            prev_opertaion = e.getActionCommand();
         }
     }
 
