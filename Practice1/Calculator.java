@@ -95,6 +95,7 @@ public class Calculator extends JFrame {
                 else if (mode.equals("div")) prev /= current;
                 else prev = current;
             }
+            prev = Math.round(prev * 100000) / 100000.0;
         }
         return prev;
     }
